@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
@@ -19,6 +20,9 @@ app.use(logger);
 app.use(notesRouter);
 
 app.use(notFoundHandler);
+
+app.use(errors());
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
