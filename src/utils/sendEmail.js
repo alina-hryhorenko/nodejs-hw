@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import nodemailer from 'nodemailer';
 
-export const sendMail = async (options) => {
+export const sendEmail = async (options) => {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT),
@@ -11,8 +11,5 @@ export const sendMail = async (options) => {
     },
   });
 
-  return await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    ...options,
-  });
+  return await transporter.sendMail(options);
 };
