@@ -1,4 +1,7 @@
 import dotenv from 'dotenv';
+
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -11,8 +14,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 
 import notesRouter from './routes/notesRoutes.js';
 import authRouter from './routes/authRoutes.js';
-
-dotenv.config();
+import userRouter from './routes/userRoutes.js';
 
 const app = express();
 
@@ -23,6 +25,7 @@ app.use(logger);
 
 app.use(authRouter);
 app.use(notesRouter);
+app.use(userRouter);
 
 app.use(errors());
 
